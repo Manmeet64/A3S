@@ -1,0 +1,50 @@
+label: university-setup
+OIDCSources:
+  - name: google-oidc-test
+    namespace: /
+    clientID: 26239462269-l82r3qdqf0c34nl8iots2o0fi6n6jj53.apps.googleusercontent.com
+    clientSecret: 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
+    endpoint: https://accounts.google.com
+    scopes:
+      - openid
+      - email
+      - profile
+    modifier:
+      url: "https://{{ env "LOCAL_IP" }}:8443/modify"
+      method: POST
+      CA: |-
+{{ readFile "certs/modifier-ca-cert.pem" | indent 8 }}
+      certificate: |-
+{{ readFile "certs/modifier-client-cert.pem" | indent 8 }}
+      key: |-
+{{ readFile "certs/modifier-client-key.pem" | indent 8 }}
+
+Authorizations:
+  - name: admin-policy
+    namespace: /university
+    targetNamespaces:
+      - /university
+      - /university/admin
+      - /university/students
+    subject:
+      - - "@source:type=oidc"
+        - "@source:namespace=/"
+        - "role=admin"
+        - "accesslevel=full"
+    permissions:
+      - get
+      - create
+      - update
+      - delete
+
+  - name: student-policy
+    namespace: /university
+    targetNamespaces:
+      - /university/students
+    subject:
+      - - "@source:type=oidc"
+        - "@source:namespace=/"
+        - "role=student"
+        - "accesslevel=student"
+    permissions:
+      - get
