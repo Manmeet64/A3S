@@ -1,0 +1,37 @@
+[
+    {
+        "id": "CS301",
+        "title": "Data Structures and Algorithms",
+        "instructor": "Dr. Jane Smith",
+        "schedule": "Mon/Wed 10:00-11:30",
+        "credits": 4
+    },
+    {
+        "id": "CS350",
+        "title": "Operating Systems",
+        "instructor": "Prof. Robert Johnson",
+        "schedule": "Tue/Thu 13:00-14:30",
+        "credits": 3
+    },
+    {
+        "id": "MATH301",
+        "title": "Linear Algebra",
+        "instructor": "Dr. Michael Chen",
+        "schedule": "Mon/Wed/Fri 9:00-10:00",
+        "credits": 3
+    },
+    {
+        "id": "CS401",
+        "title": "Machine Learning",
+        "instructor": "Dr. Sarah Williams",
+        "schedule": "Tue/Thu 15:00-16:30",
+        "credits": 4
+    },
+    {
+        "id": "ENG205",
+        "title": "Technical Writing",
+        "instructor": "Prof. Emily Davis",
+        "schedule": "Wed 14:00-17:00",
+        "credits": 3
+    }
+]

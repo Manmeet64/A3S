@@ -1,0 +1,220 @@
+.adminContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+.content {
+    flex: 1;
+    padding: 32px;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.header {
+    margin-bottom: 32px;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 32px;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sectionHeader h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 12px;
+}
+
+.getButton {
+    padding: 10px 16px;
+    background-color: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.getButton:hover {
+    background-color: #6d28d9;
+}
+
+.createButton {
+    padding: 10px 16px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.createButton:hover {
+    background-color: #059669;
+}
+
+.deleteButton {
+    padding: 10px 16px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+    background-color: #dc2626;
+}
+
+.message {
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.success {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #1b5e20;
+}
+
+.error {
+    background-color: #ffebee;
+    border: 1px solid #ef9a9a;
+    color: #b71c1c;
+}
+
+.dataTable {
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.dataTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataTable th {
+    text-align: left;
+    padding: 12px 16px;
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dataTable td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #4b5563;
+}
+
+.dataTable tr:last-child td {
+    border-bottom: none;
+}
+
+.settingsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.settingCard {
+    background-color: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.settingHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.settingHeader h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.settingValue {
+    background-color: #eef2ff;
+    color: #4f46e5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.settingDescription {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        padding: 16px;
+        padding-top: 72px;
+    }
+
+    .sectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .actionButtons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .getButton,
+    .createButton,
+    .deleteButton {
+        width: 100%;
+    }
+
+    .settingsGrid {
+        grid-template-columns: 1fr;
+    }
+}

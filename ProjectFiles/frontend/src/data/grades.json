@@ -1,0 +1,38 @@
+[
+    {
+        "course": "CS101",
+        "grade": "A",
+        "credits": 3,
+        "semester": "Fall 2023"
+    },
+    {
+        "course": "MATH201",
+        "grade": "B+",
+        "credits": 4,
+        "semester": "Fall 2023"
+    },
+    {
+        "course": "ENG105",
+        "grade": "A-",
+        "credits": 3,
+        "semester": "Fall 2023"
+    },
+    {
+        "course": "PHYS211",
+        "grade": "B",
+        "credits": 4,
+        "semester": "Spring 2024"
+    },
+    {
+        "course": "CS201",
+        "grade": "A+",
+        "credits": 3,
+        "semester": "Spring 2024"
+    },
+    {
+        "course": "HIST101",
+        "grade": "B+",
+        "credits": 3,
+        "semester": "Spring 2024"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "name": "System Theme",
+        "value": "Light",
+        "description": "Default theme for the application interface"
+    },
+    {
+        "id": "2",
+        "name": "Session Timeout",
+        "value": "30 minutes",
+        "description": "Time before an inactive session is automatically logged out"
+    },
+    {
+        "id": "3",
+        "name": "Two-Factor Authentication",
+        "value": "Enabled",
+        "description": "Require two-factor authentication for all admin accounts"
+    },
+    {
+        "id": "4",
+        "name": "Password Policy",
+        "value": "Strong",
+        "description": "Minimum requirements for user passwords"
+    },
+    {
+        "id": "5",
+        "name": "API Rate Limit",
+        "value": "100/minute",
+        "description": "Maximum number of API requests allowed per minute"
+    },
+    {
+        "id": "6",
+        "name": "Maintenance Mode",
+        "value": "Disabled",
+        "description": "When enabled, only administrators can access the system"
+    }
+]
