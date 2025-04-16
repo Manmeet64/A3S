@@ -182,7 +182,7 @@ dir ProjectFiles\backend\ssl\
 #### Start the Modifier Server
 
 ```bash
-cd ../ProjectFiles/modifier-server
+cd /ProjectFiles/modifier-server
 npm install
 npm run dev
 ```
@@ -190,7 +190,7 @@ npm run dev
 #### Start the Backend Server
 
 ```bash
-cd ../backend
+cd ..//backend
 npm install
 npm run dev
 ```
