@@ -59,7 +59,7 @@ curl -s https://hg.mozilla.org/mozilla-central/raw-file/tip/security/nss/lib/ckf
 ### 5. Start A3S with Docker Compose
 
 ```bash
-cd ./dev
+cd /dev
 docker compose up
 ```
 
@@ -79,16 +79,16 @@ This installs `a3sctl` into your `$GOBIN` folder. Make sure `$GOBIN` is in your 
 
 ## University Portal Demo Setup
 
-### 1. Make Scripts Executable
+### 1. Make Scripts Executable (Execute from root example:- /A3S)
 
 ```bash
-chmod +x dev/init-main.sh dev/setup-namespaces.sh dev/setup-policies.sh dev/gencerts.sh dev/setenv.sh
+chmod +x /init-main.sh /setup-namespaces.sh /setup-policies.sh  /gencerts.sh /setenv.sh
 ```
 
 ### 2. Initialize the A3S Configuration
 
 ```bash
-cd dev
+
 ./init-main.sh
 ```
 

@@ -13,6 +13,13 @@
 
 .header {
     margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerContent {
+    flex: 1;
 }
 
 .header h1 {
@@ -24,6 +31,15 @@
 
 .header p {
     color: #6b7280;
+    font-size: 16px;
+}
+
+.userGreeting {
+    background-color: #7c3aed;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
     font-size: 16px;
 }
 
@@ -286,5 +302,9 @@
 
     .tokenComparison {
         grid-template-columns: 1fr;
+    }
+
+    .userGreeting {
+        align-self: flex-end;
     }
 }

@@ -49,6 +49,14 @@ const Dashboard = () => {
                 const data = await response.json();
                 setCloakData(data);
                 setDecodedToken(data.cloakedToken.claims);
+                console.log(
+                    "Cloaked token data (raw):",
+                    data.cloakedToken.claims
+                );
+                console.log(
+                    "Cloaked token data (stringified):",
+                    JSON.stringify(data.cloakedToken.claims)
+                );
             } else {
                 // Fetch regular decoded token
                 const response = await fetch("https://localhost:3000/decode", {
@@ -66,6 +74,11 @@ const Dashboard = () => {
                 const data = await response.json();
                 setDecodedToken(data.payload);
                 setCloakData(null);
+                console.log("Decoded token data (raw):", data.payload);
+                console.log(
+                    "Decoded token data (stringified):",
+                    JSON.stringify(data.payload)
+                );
             }
 
             setIsLoading(false);
@@ -79,19 +92,29 @@ const Dashboard = () => {
         setIsCloaked(!isCloaked);
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem("a3s_access_token");
-        localStorage.removeItem("a3s_id_token");
-        navigate("/login");
-    };
-
     return (
         <div className={styles.dashboardContainer}>
             <Navbar />
             <main className={styles.content}>
                 <div className={styles.header}>
-                    <h1>Auth As A Service Dashboard</h1>
-                    <p>Manage your authentication and authorization</p>
+                    <div className={styles.headerContent}>
+                        <h1>University Dashboard</h1>
+                        <p>Manage your authentication and authorization</p>
+                    </div>
+                    {!isLoading && decodedToken && (
+                        <div className={styles.userGreeting}>
+                            HI{" "}
+                            {(() => {
+                                // Check if identity array exists and contains role=admin
+                                const isAdmin = decodedToken.identity?.some(
+                                    (item) =>
+                                        item.toLowerCase() === "role=admin"
+                                );
+
+                                return isAdmin ? "ADMIN" : "STUDENT";
+                            })()}
+                        </div>
+                    )}
                 </div>
 
                 <div className={styles.authorizationSection}>
@@ -238,13 +261,6 @@ const Dashboard = () => {
                                 )}
                             </>
                         )}
-
-                        <button
-                            onClick={handleLogout}
-                            className={styles.logoutBtn}
-                        >
-                            Logout
-                        </button>
                     </div>
                 </div>
             </main>
