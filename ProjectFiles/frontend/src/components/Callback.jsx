@@ -64,7 +64,7 @@ const Callback = () => {
             });
 
             const data = await res.json();
-            console.log("✅ Response from /issue:", data);
+            console.log("Response from /issue:", data);
             setResponse(data);
 
             if (data.token) {
@@ -77,7 +77,7 @@ const Callback = () => {
                 setError("Authentication failed - no token received");
             }
         } catch (error) {
-            console.error("❌ /issue request error:", error);
+            console.error("/issue request error:", error);
             setError(error.message || "Failed to complete authentication");
         }
     };

@@ -14,7 +14,7 @@ const LoginButton = () => {
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    Accept: "application/json",
                 },
                 body: JSON.stringify({
                     sourceType: "OIDC",
@@ -24,26 +24,28 @@ const LoginButton = () => {
                         redirectURL: "https://localhost:5173/callback",
                         redirectErrorURL: "https://localhost:5173/error",
                         noAuthRedirect: true,
-                    }
-                })
+                    },
+                }),
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                throw new Error(
+                    errorData.error || `HTTP error! status: ${response.status}`
+                );
             }
 
             const data = await response.json();
-            console.log("✅ Response from backend:", data);
+            console.log("Response from backend:", data);
 
             if (data.token) {
-                console.log("✅ Token received:", data.token);
+                console.log("Token received:", data.token);
             } else if (data.inputOIDC?.authURL) {
-                console.log("🌐 Redirecting to:", data.inputOIDC.authURL);
+                console.log("Redirecting to:", data.inputOIDC.authURL);
                 window.location.href = data.inputOIDC.authURL;
             }
         } catch (error) {
-            console.error("❌ Login error:", error);
+            console.error("Login error:", error);
             setError(error.message || "Failed to initiate login");
         }
     };

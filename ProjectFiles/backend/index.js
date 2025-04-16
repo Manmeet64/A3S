@@ -32,5 +32,5 @@ const sslOptions = {
 };
 
 https.createServer(sslOptions, app).listen(3000, () => {
-    console.log("✅ Express HTTPS Server running on https://localhost:3000");
+    console.log("Express HTTPS Server running on https://localhost:3000");
 });

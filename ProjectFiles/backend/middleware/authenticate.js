@@ -37,13 +37,6 @@ export const authenticate = async (req, res, next) => {
         console.log("Namespace:", namespace);
         console.log("Resource:", resource);
 
-        // Query parameters
-        console.log("Query parameters:", req.query);
-        const cloak = ["role", "accesslevel", "email"]; // Hard-coded important claims
-        const restrict = (req.query.restrict || "").split(",").filter(Boolean);
-        console.log("Cloak parameters (hard-coded):", cloak);
-        console.log("Restrict parameters:", restrict);
-
         // Map HTTP method to action
         let action;
         switch (req.method) {
@@ -82,8 +75,6 @@ export const authenticate = async (req, res, next) => {
             action,
             resource,
             namespace,
-            cloak,
-            restrict,
         };
         console.log(
             "Authorization request body:",
@@ -100,17 +91,6 @@ export const authenticate = async (req, res, next) => {
             httpsAgent,
         });
         console.log("A3S response status:", response.status);
-        const cloakedToken =
-            response.headers["x-a3s-token"] ||
-            response.headers["X-A3S-Token"] ||
-            response.headers["X-a3s-token"] ||
-            response.headers["x-A3S-token"];
-        console.log("Cloaked token:", cloakedToken);
-        // if (!cloakedToken) {
-        //     return res
-        //         .status(400)
-        //         .json({ error: "No cloaked token returned in headers" });
-        // }
         if (response.data) {
             console.log(
                 "A3S response data:",
