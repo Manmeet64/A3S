@@ -17,8 +17,8 @@ This repository contains a demonstration of the Auth-as-a-Service (A3S) platform
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/a3s-university-demo.git
-cd a3s-university-demo
+git clone https://github.com/Manmeet64/A3S.git
+cd A3S
 ```
 
 ### 2. Install Tools for A3S Development
