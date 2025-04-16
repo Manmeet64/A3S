@@ -27,8 +27,8 @@ app.use(cookieParser());
 app.use("/", routes);
 
 const sslOptions = {
-    key: fs.readFileSync(path.join(__dirname, "localhost-key.pem")),
-    cert: fs.readFileSync(path.join(__dirname, "localhost.pem")),
+    key: fs.readFileSync(path.join(__dirname, "ssl/localhost-key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "ssl/localhost.pem")),
 };
 
 https.createServer(sslOptions, app).listen(3000, () => {
