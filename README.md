@@ -190,7 +190,7 @@ npm run dev
 #### Start the Backend Server
 
 ```bash
-cd ..//backend
+cd ProjectFiles/backend
 npm install
 npm run dev
 ```
@@ -198,7 +198,7 @@ npm run dev
 #### Start the Frontend Application
 
 ```bash
-cd ../frontend
+cd ProjectFiles/frontend
 npm install
 npm run dev
 ```
