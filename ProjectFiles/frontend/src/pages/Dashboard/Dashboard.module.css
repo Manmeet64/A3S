@@ -162,6 +162,102 @@
     color: #ef4444;
 }
 
+.tokenHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cloakButton {
+    padding: 10px 16px;
+    background-color: #f3f4f6;
+    color: #6b7280;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.cloakButton:hover {
+    background-color: #e5e7eb;
+}
+
+.cloakActive {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.cloakActive:hover {
+    background-color: #6d28d9;
+}
+
+.cloakInfo {
+    background-color: #eef2ff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-left: 4px solid #7c3aed;
+}
+
+.cloakInfo h4 {
+    color: #4f46e5;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.cloakInfo p {
+    color: #6b7280;
+    font-size: 14px;
+    margin: 0;
+}
+
+.comparisonSection {
+    margin-top: 24px;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 24px;
+}
+
+.comparisonSection h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+.tokenComparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.tokenColumn {
+    background-color: #f9fafb;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.tokenColumn h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tokenColumn pre {
+    font-family: monospace;
+    font-size: 14px;
+    color: #4b5563;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .content {
@@ -175,6 +271,20 @@
     }
 
     .tokenInfo {
+        grid-template-columns: 1fr;
+    }
+
+    .tokenHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .cloakButton {
+        width: 100%;
+    }
+
+    .tokenComparison {
         grid-template-columns: 1fr;
     }
 }

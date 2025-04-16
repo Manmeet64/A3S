@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { Home, Users, BookOpen, FileText, LogOut, Menu, X } from "lucide-react";
+import { Home, Users, BookOpen, FileText, LogOut } from "lucide-react";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
@@ -15,22 +16,31 @@ const Navbar = () => {
         return location.pathname === path;
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("a3s_access_token");
+        localStorage.removeItem("a3s_id_token");
+        navigate("/");
+    };
+
+    // Don't render the mobile toggle at all for the docs page
+    const showMobileToggle = location.pathname !== "/docs";
+
     return (
         <>
-            <div className={styles.mobileToggle} onClick={toggleNavbar}>
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </div>
+            {/* Completely removed the mobile toggle for docs page */}
 
             <nav className={`${styles.navbar} ${isOpen ? styles.open : ""}`}>
                 <div className={styles.logo}>
-                    <h2>Fingerr</h2>
+                    <h2>University</h2>
                 </div>
 
                 <div className={styles.navLinks}>
                     <Link
-                        to="/"
+                        to="/dashboard"
                         className={`${styles.navLink} ${
-                            isActive("/") ? styles.active : ""
+                            isActive("/dashboard") || isActive("/")
+                                ? styles.active
+                                : ""
                         }`}
                     >
                         <Home size={20} />
@@ -69,7 +79,10 @@ const Navbar = () => {
                 </div>
 
                 <div className={styles.navFooter}>
-                    <button className={styles.logoutButton}>
+                    <button
+                        className={styles.logoutButton}
+                        onClick={handleLogout}
+                    >
                         <LogOut size={20} />
                         <span>Logout</span>
                     </button>

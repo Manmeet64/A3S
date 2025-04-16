@@ -19,10 +19,19 @@ const Admin = () => {
 
             const endpoint = "https://localhost:3000/university/admin/users";
 
+            // Get token from localStorage
+            const token = localStorage.getItem("a3s_access_token");
+
+            if (!token) {
+                setUsersMessage("Error: No authentication token found");
+                return;
+            }
+
             const options = {
                 method: method,
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
                 credentials: "include",
             };
@@ -70,11 +79,20 @@ const Admin = () => {
 
             const endpoint = "https://localhost:3000/university/admin/settings";
 
+            // Get token from localStorage
+            const token = localStorage.getItem("a3s_access_token");
+
+            if (!token) {
+                setSettingsMessage("Error: No authentication token found");
+                return;
+            }
+
             console.log("Sending GET request to:", endpoint);
             const response = await fetch(endpoint, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 },
                 credentials: "include",
             });

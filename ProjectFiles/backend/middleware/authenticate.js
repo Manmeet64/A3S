@@ -5,29 +5,27 @@ const a3s_url = "https://127.0.0.1:44443";
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 export const authenticate = async (req, res, next) => {
-    console.log("🔒 Starting authentication process...");
-    console.log("📍 Request path:", req.path);
-    console.log("📝 Request method:", req.method);
+    console.log("Starting authentication process...");
+    console.log("Request path:", req.path);
+    console.log("Request method:", req.method);
 
-    // Token extraction
-    let token = req.cookies["x-a3s-token"];
-    console.log("🍪 Token from cookies:", token ? "Found" : "Not found");
-
+    // Token extraction from Authorization header only
+    let token;
     const auth = req.headers.authorization?.split(" ");
     if (auth?.[0] === "Bearer" && auth[1]) {
         token = auth[1];
-        console.log("🔑 Token from Authorization header found");
+        console.log("Token from Authorization header found");
     }
 
     if (!token) {
-        console.log("❌ No token found in cookies or Authorization header");
+        console.log("❌ No token found in Authorization header");
         return res.status(401).json({ error: "No token provided" });
     }
 
     try {
         // Path parsing
         const pathParts = req.path.split("/").filter(Boolean);
-        console.log("🛣️ Path parts:", pathParts);
+        console.log("Path parts:", pathParts);
 
         if (pathParts.length < 2) {
             console.log("❌ Invalid path structure");
@@ -36,15 +34,15 @@ export const authenticate = async (req, res, next) => {
 
         const namespace = `/${pathParts.slice(0, 2).join("/")}`;
         const resource = pathParts[2] || "";
-        console.log("📁 Namespace:", namespace);
-        console.log("📄 Resource:", resource);
+        console.log("Namespace:", namespace);
+        console.log("Resource:", resource);
 
         // Query parameters
-        console.log("🔍 Query parameters:", req.query);
-        const cloak = (req.query.cloak || "").split(",").filter(Boolean);
+        console.log("Query parameters:", req.query);
+        const cloak = ["role", "accesslevel", "email"]; // Hard-coded important claims
         const restrict = (req.query.restrict || "").split(",").filter(Boolean);
-        console.log("🎭 Cloak parameters:", cloak);
-        console.log("🔒 Restrict parameters:", restrict);
+        console.log("Cloak parameters (hard-coded):", cloak);
+        console.log("Restrict parameters:", restrict);
 
         // Map HTTP method to action
         let action;
@@ -65,7 +63,7 @@ export const authenticate = async (req, res, next) => {
             default:
                 action = "get";
         }
-        console.log("🔄 Mapped HTTP method to action:", action);
+        console.log("Mapped HTTP method to action:", action);
 
         // Request body (for POST/PUT requests)
         let requestBody = {};
@@ -75,10 +73,7 @@ export const authenticate = async (req, res, next) => {
             req.method === "PATCH"
         ) {
             requestBody = req.body || {};
-            console.log(
-                "📦 Request body:",
-                JSON.stringify(requestBody, null, 2)
-            );
+            console.log("Request body:", JSON.stringify(requestBody, null, 2));
         }
 
         // Authorization body
@@ -91,12 +86,12 @@ export const authenticate = async (req, res, next) => {
             restrict,
         };
         console.log(
-            "📦 Authorization request body:",
+            "Authorization request body:",
             JSON.stringify(authzBody, null, 2)
         );
 
         // Making request to A3S
-        console.log("🚀 Sending authorization request to A3S...");
+        console.log("Sending authorization request to A3S...");
         const response = await axios.post(`${a3s_url}/authz`, authzBody, {
             headers: {
                 "Content-Type": "application/json",
@@ -104,24 +99,34 @@ export const authenticate = async (req, res, next) => {
             },
             httpsAgent,
         });
-
-        console.log("📨 A3S response status:", response.status);
+        console.log("A3S response status:", response.status);
+        const cloakedToken =
+            response.headers["x-a3s-token"] ||
+            response.headers["X-A3S-Token"] ||
+            response.headers["X-a3s-token"] ||
+            response.headers["x-A3S-token"];
+        console.log("Cloaked token:", cloakedToken);
+        // if (!cloakedToken) {
+        //     return res
+        //         .status(400)
+        //         .json({ error: "No cloaked token returned in headers" });
+        // }
         if (response.data) {
             console.log(
-                "📨 A3S response data:",
+                "A3S response data:",
                 JSON.stringify(response.data, null, 2)
             );
         }
 
         if (response.status === 204) {
-            console.log("✅ Authorization successful");
+            console.log("Authorization successful");
             return next();
         }
 
-        console.log("❌ Authorization denied");
+        console.log("Authorization denied");
         return res.status(403).json({ error: "Not authorized" });
     } catch (err) {
-        console.error("❌ Authorization error:", err.message);
+        console.error("Authorization error:", err.message);
         if (err.response) {
             console.error("Response status:", err.response.status);
             console.error("Response data:", err.response.data);

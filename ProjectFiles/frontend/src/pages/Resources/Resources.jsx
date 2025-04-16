@@ -238,7 +238,7 @@ const Resources = () => {
                                 GET Grades
                             </button>
                             <button
-                                className={styles.createButton}
+                                className={styles.getButton}
                                 onClick={() => fetchGrades("POST")}
                             >
                                 POST Grade
@@ -298,7 +298,7 @@ const Resources = () => {
                                 GET Courses
                             </button>
                             <button
-                                className={styles.createButton}
+                                className={styles.getButton}
                                 onClick={() => fetchCourses("POST")}
                             >
                                 POST Course

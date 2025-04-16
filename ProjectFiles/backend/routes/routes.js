@@ -9,6 +9,7 @@ import {
     logout,
     decodeToken,
 } from "../controllers/controllers.js";
+import { demonstrateCloaking } from "../controllers/tokenController.js";
 import { authenticate } from "../middleware/authenticate.js";
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router.get("/login", loginPage);
 router.post("/issue", issueToken);
 router.post("/logout", logout);
 router.post("/decode", decodeToken);
+router.get("/demonstrate-cloak", demonstrateCloaking);
 router.get("/university/admin/users", authenticate, adminDashboard);
 router.post("/university/admin/users", authenticate, adminDashboard);
 router.delete("/university/admin/users", authenticate, adminDashboard);

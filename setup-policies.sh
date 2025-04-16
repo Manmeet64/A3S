@@ -53,7 +53,7 @@ a3sctl api create authorization \
             "accesslevel=full"
         ]
     ]' \
-    --with.permissions '["users:get,create,update,delete", "settings:get,update","grades:get,post","courses:get,post"]' \
+    --with.permissions '["users:get,create,update,delete", "settings:get,update","grades:get,create","courses:get,create"]' \
     -t "$A3SCTL_TOKEN"
 
 # Create student policy

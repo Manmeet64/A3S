@@ -62,6 +62,10 @@
 .getButton:hover {
     background-color: #6d28d9;
 }
+.actionButtons {
+    display: flex;
+    gap: 10px;
+}
 
 .message {
     padding: 12px;
