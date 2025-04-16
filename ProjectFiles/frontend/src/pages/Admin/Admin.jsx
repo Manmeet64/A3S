@@ -18,8 +18,6 @@ const Admin = () => {
             }
 
             const endpoint = "https://localhost:3000/university/admin/users";
-
-            // Get token from localStorage
             const token = localStorage.getItem("a3s_access_token");
 
             if (!token) {
@@ -36,7 +34,6 @@ const Admin = () => {
                 credentials: "include",
             };
 
-            // Add body for POST and DELETE requests
             if (method === "POST") {
                 options.body = JSON.stringify({
                     name: "Test User",
@@ -46,15 +43,16 @@ const Admin = () => {
                 options.body = JSON.stringify({ userId: "123" });
             }
 
-            console.log(`Sending ${method} request to:`, endpoint);
             const response = await fetch(endpoint, options);
 
             if (response.ok) {
                 const data = await response.json();
-                setUsersMessage(data.message || "Request successful");
+                setUsersMessage(
+                    `${method} request successful: ${data.message || ""}`
+                );
 
                 if (method === "GET") {
-                    setUsers(usersData); // Using mock data for display
+                    setUsers(usersData);
                 }
             } else {
                 const error = await response.json();
@@ -63,7 +61,6 @@ const Admin = () => {
                 );
             }
         } catch (error) {
-            console.error("Request error:", error);
             setUsersMessage(`Error: ${error.message}`);
 
             if (method === "GET") {
@@ -78,8 +75,6 @@ const Admin = () => {
             setSettings(null);
 
             const endpoint = "https://localhost:3000/university/admin/settings";
-
-            // Get token from localStorage
             const token = localStorage.getItem("a3s_access_token");
 
             if (!token) {
@@ -87,7 +82,6 @@ const Admin = () => {
                 return;
             }
 
-            console.log("Sending GET request to:", endpoint);
             const response = await fetch(endpoint, {
                 method: "GET",
                 headers: {
@@ -102,7 +96,7 @@ const Admin = () => {
                 setSettingsMessage(
                     data.message || "Settings fetched successfully"
                 );
-                setSettings(settingsData); // Using mock data for display
+                setSettings(settingsData);
             } else {
                 const error = await response.json();
                 setSettingsMessage(
@@ -110,7 +104,6 @@ const Admin = () => {
                 );
             }
         } catch (error) {
-            console.error("Request error:", error);
             setSettingsMessage(`Error: ${error.message}`);
             setSettings(settingsData);
         }
@@ -136,13 +129,13 @@ const Admin = () => {
                                 GET Users
                             </button>
                             <button
-                                className={styles.createButton}
+                                className={styles.getButton}
                                 onClick={() => fetchUsers("POST")}
                             >
                                 POST User
                             </button>
                             <button
-                                className={styles.deleteButton}
+                                className={styles.getButton}
                                 onClick={() => fetchUsers("DELETE")}
                             >
                                 DELETE User

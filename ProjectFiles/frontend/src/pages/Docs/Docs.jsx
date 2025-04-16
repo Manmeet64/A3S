@@ -102,7 +102,7 @@ const Docs = () => {
             </div>
 
             <div className={styles.content}>
-                <h1>A3S Authentication & Authorization Documentation</h1>
+                <h1>MY A3S LEARNINGS</h1>
 
                 <section id="what-is-a3s">
                     <h2>What is A3S?</h2>
@@ -592,7 +592,7 @@ const canViewGrades = await checkAuthorization(
                 </section>
 
                 <section id="api-reference">
-                    <h2>API Reference</h2>
+                    <h2>CUSTOM API ENDPOINTS</h2>
                     <div className={styles.tableContainer}>
                         <table className={styles.apiTable}>
                             <thead>
@@ -670,15 +670,6 @@ const canViewGrades = await checkAuthorization(
                                     </td>
                                     <td>
                                         Demonstrates token cloaking
-                                        functionality
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <code>GET /demonstrate-restrict</code>
-                                    </td>
-                                    <td>
-                                        Demonstrates token restriction
                                         functionality
                                     </td>
                                 </tr>

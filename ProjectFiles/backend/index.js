@@ -28,7 +28,7 @@ app.use("/", routes);
 
 const sslOptions = {
     key: fs.readFileSync(path.join(__dirname, "localhost-key.pem")),
-    cert: fs.readFileSync(path.join(__dirname, "localhost-copy.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "localhost.pem")),
 };
 
 https.createServer(sslOptions, app).listen(3000, () => {

@@ -102,10 +102,9 @@ const Dashboard = () => {
                             <h3>Admin Access</h3>
                             <ul className={styles.permissionList}>
                                 <li>Access Admin page</li>
-                                <li>GET access to Users data</li>
+                                <li>GET and POST access to Users data</li>
                                 <li>GET access to Settings data</li>
-                                <li>GET access to Resources data</li>
-                                <li>Read-only mode for sensitive operations</li>
+                                <li>GET and POST access to Resources data</li>
                             </ul>
                         </div>
 
