@@ -223,6 +223,16 @@ npm install
 
 ---
 
+## Authentication Flow
+
+![Authentication Flow](ProjectFiles/frontend/public/auth.png)
+
+## Authorization Flow
+
+![Authorization Flow](ProjectFiles/frontend/public/authorize.png)
+
+---
+
 ## Features
 
 -   Authentication using A3S OIDC integration
